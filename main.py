@@ -1,32 +1,81 @@
 import pyautogui
 import time
 
-time.sleep(2)
 
-res = pyautogui.locateCenterOnScreen("grafika/skrut_na_pulpicie.png", confidence=0.7)
-pyautogui.doubleClick(res)
+def dubleWeryfication(sciezka):
+    while True:
+        if pyautogui.locateCenterOnScreen(sciezka, confidence=0.7):
+            res = pyautogui.locateCenterOnScreen(sciezka, confidence=0.7)
+            pyautogui.doubleClick(res)
+            break
 
-time.sleep(5)
-res = pyautogui.locateCenterOnScreen("grafika/okno_wprowadzania_loginu.png", confidence=0.7)
-pyautogui.click(res)
+def weryfication(sciezka, confidence=0.7, delate=0):
+    start = int(time.time())
+    while True:
+        if pyautogui.locateCenterOnScreen(sciezka, confidence=confidence):
+            time.sleep(delate)
+            res = pyautogui.locateCenterOnScreen(sciezka, confidence=confidence)
+            pyautogui.click(res)
+            break
+        elif int(time.time())>start+20:
+            print("wykonuje wyjątek")
+            szukanieRozwiazania()
 
-time.sleep(2)
-res = pyautogui.locateCenterOnScreen("grafika/masakra.png", confidence=0.7)
-pyautogui.click(res)
 
-time.sleep(2)
-res = pyautogui.locateCenterOnScreen("grafika/zaloguj.png", confidence=0.7)
-pyautogui.click(res)
+def szukanieRozwiazania():
+    print('Wykonuję krzyzyk')
+    if pyautogui.locateCenterOnScreen("grafika/wyjatki/krzyzyk.png", confidence=0.7):
+        res = pyautogui.locateCenterOnScreen("grafika/wyjatki/krzyzyk.png", confidence=0.7)
+        pyautogui.doubleClick(res)
+        return 1
 
-time.sleep(3)
-res = pyautogui.locateCenterOnScreen("grafika/start.png", confidence=0.7)
-pyautogui.click(res)
+    if pyautogui.locateCenterOnScreen("grafika/wyjatki/prywatnosc.png", confidence=0.7):
+        res = pyautogui.locateCenterOnScreen("grafika/wyjatki/prywatnosc.png", confidence=0.7)
+        pyautogui.doubleClick(res)
+        return 1
 
-time.sleep(20)
-res = pyautogui.locateCenterOnScreen("grafika/start_do_odebrania.png", confidence=0.7)
-pyautogui.click(res)
+    else:
+        return 0
 
-time.sleep(20)
-res = pyautogui.locateCenterOnScreen("grafika/krzyzyk.png", confidence=0.7)
-pyautogui.click(res)
+for liczba in range(0,1):
 
+    print("klikniencie na skrut")
+    print(int(time.time()))
+    time.sleep(3)
+    print(int(time.time()))
+
+    dubleWeryfication("grafika/skrut_na_pulpicie.png")
+
+    print("klikniencie na skrut")
+    weryfication("grafika/jezyk.png")
+
+    print("klikniencie na skrut")
+    weryfication("grafika/polska.png")
+
+    print("okno wprowadzania loginu")
+    weryfication("grafika/okno_wprowadzania_loginu.png")
+
+    print("kliknięcie na nik")
+    weryfication("grafika/masakra.png")
+
+    print("kliknięcie zaloguj")
+    weryfication("grafika/zaloguj.png")
+
+    print("kliknięcie na start")
+    weryfication("grafika/start.png")
+
+    print("klikniecie na wejście do gry")
+    weryfication("grafika/odbierz.png", 0.9, 1)
+
+
+    print("klikniencie na zakończ")
+    #weryfication("grafika/zalogowany.png")
+    while True:
+        if pyautogui.locateCenterOnScreen("grafika/zalogowany.png", confidence=0.7):
+            time.sleep(2)
+            res = pyautogui.locateCenterOnScreen("grafika/krzyzyk.png", confidence=0.7)
+            pyautogui.click(res)
+            break
+
+
+print("koniec programu")
