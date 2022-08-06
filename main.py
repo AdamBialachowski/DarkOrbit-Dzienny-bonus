@@ -1,5 +1,6 @@
 import pyautogui
 import time
+import klasy
 
 
 def dubleWeryfication(sciezka):
@@ -39,33 +40,35 @@ def szukanieRozwiazania():
 
 for liczba in range(0,1):
 
+    odpalenie = klasy.StartGame()
+    #odpalenie.uruchom()
     print("klikniencie na skrut")
     print(int(time.time()))
     time.sleep(3)
     print(int(time.time()))
 
-    dubleWeryfication("grafika/skrut_na_pulpicie.png")
+    odpalenie.dubleWeryfication("grafika/skrut_na_pulpicie.png")
 
     print("klikniencie na skrut")
-    weryfication("grafika/jezyk.png")
+    odpalenie.weryfication("grafika/jezyk.png")
 
     print("klikniencie na skrut")
-    weryfication("grafika/polska.png")
+    odpalenie.weryfication("grafika/polska.png")
 
     print("okno wprowadzania loginu")
-    weryfication("grafika/okno_wprowadzania_loginu.png")
+    odpalenie.weryfication("grafika/okno_wprowadzania_loginu.png")
 
     print("kliknięcie na nik")
-    weryfication("grafika/masakra.png")
+    odpalenie.weryfication("grafika/masakra.png")
 
     print("kliknięcie zaloguj")
-    weryfication("grafika/zaloguj.png")
+    odpalenie.weryfication("grafika/zaloguj.png")
 
     print("kliknięcie na start")
-    weryfication("grafika/start.png")
+    odpalenie.weryfication("grafika/start.png")
 
     print("klikniecie na wejście do gry")
-    weryfication("grafika/odbierz.png", 0.9, 1)
+    odpalenie.weryfication("grafika/start.png", 0.9, 10)
 
 
     print("klikniencie na zakończ")
